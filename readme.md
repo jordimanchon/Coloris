@@ -5,7 +5,7 @@ Play Coloris soon…
 [Jorge Manchón](mailto:jordimanchon@me.com)
 
 ## Progress
-- [ ] Create repo
+- [X] Create repo
 - [ ] Game logic
-- [ ] DOM manipulation
 - [ ] Add style
+- [ ] Join everything together
