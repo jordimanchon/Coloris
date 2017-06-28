@@ -21,9 +21,9 @@ Board.prototype._generateMatrix = function() {
 Board.prototype._generatePointsRow = function() {
   var pointsRow = [];
     while (pointsRow.length < this.width) {
-      pointsRow.push("coin");
+      pointsRow.push("silver");
     }
-  var middleBoard = this.height/2;
+  var middleBoard = Math.ceil(this.height/2);
   this.matrix.splice(middleBoard, 0, pointsRow);
 };
 

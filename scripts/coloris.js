@@ -1,10 +1,23 @@
-function renderBoard(board, container) {
-  for (var rowIndex = 0; rowIndex < board.height + 1; rowIndex++) {
+var board = new Board(6, 6);
+var trueHeight = board.height + 1;
+
+function renderBoard(board) {
+  var container = $(".container");
+  for (var rowIndex = 0; rowIndex < trueHeight; rowIndex++) {
     var row = $("<div>")
-      .addClass("row");
+    .addClass("row");
     for (var columnIndex = 0; columnIndex < board.width; columnIndex++) {
+      var color = board.matrix[rowIndex][columnIndex];
       var column = $("<div>")
-        .addClass("col-xs-6" + " x:" + columnIndex + "-y:" + rowIndex);
+      .addClass("col-xs-6 " + color)
+      .attr("x", columnIndex)
+      .attr("y", rowIndex)
+      .css({
+        "width": "calc(90vh / " + trueHeight + " * 0.6)",
+        "height": "0",
+        "padding-bottom": "calc(90vh / " + trueHeight + " * 0.6)",
+        "margin": "calc(90vh / " + trueHeight + " * 0.2)"
+      });
       row.append(column);
     }
     container.append(row);
@@ -12,8 +25,6 @@ function renderBoard(board, container) {
 }
 
 $(document).ready(function(){
-  var board = new Board (6, 12);
-  console.table(board.matrix);
-  var container = $(".container");
-  renderBoard(board, container);
+  console.table(board.matrix); // !!!!!!!!!!!!!
+  renderBoard(board);
 });
