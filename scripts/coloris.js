@@ -10,15 +10,14 @@ function renderBoard(board) {
     for (var columnIndex = 0; columnIndex < board.width; columnIndex++) {
       var color = board.matrix[rowIndex][columnIndex];
       var column = $('<div>')
-      .addClass('col-xs-6 ' + color)
+      .addClass('col-xs-6 ' + 'color ' + color)
       .attr('x', columnIndex)
       .attr('y', rowIndex)
+      .data({x: columnIndex, y: rowIndex, color: color})
       .css({
         'width': '0',
         'height': '0',
-        'padding-left': 'calc(90vh / ' + trueHeight + ' * 0.3)',
-        'padding-right': 'calc(90vh / ' + trueHeight + ' * 0.3)',
-        'padding-bottom': 'calc(90vh / ' + trueHeight + ' * 0.6)',
+        'padding': 'calc(90vh / ' + trueHeight + ' * 0.3)',
         'margin': 'calc(90vh / ' + trueHeight + ' * 0.2)'
       });
       row.append(column);
@@ -30,4 +29,21 @@ function renderBoard(board) {
 $(document).ready(function(){
   console.table(board.matrix); // !!!!!!!!!!!!!
   renderBoard(board);
+
+  //counters
+
+  var cell = $('.color').not($('.silver'));
+  var coin = $('.silver');
+  if (game.canSelect()) {
+    cell.on('click', function(c) {
+      var selectedCell = $(this).data();
+      console.log(selectedCell); // !!!!!!!!!!!!!
+      game.move(selectedCell);
+      console.log(game.activeMove); // !!!!!!!!!!!!!
+      if (game.activeMove.length === 2) {
+        game.endMove();
+      }
+      console.log(game);
+    });
+  }
 });
