@@ -21,9 +21,9 @@ Board.prototype._generateMatrix = function() {
 Board.prototype._generatePointsRow = function() {
   var pointsRow = [];
     while (pointsRow.length < this.width) {
-      pointsRow.push("silver");
+      pointsRow.push('silver');
     }
-  var middleBoard = Math.ceil(this.height/2);
+  var middleBoard = this.height/2;
   this.matrix.splice(middleBoard, 0, pointsRow);
 };
 
@@ -33,12 +33,12 @@ Board.prototype._generateRandomColors = function() {
       if (this.matrix[i][j] === null) {
         var randomColor = Math.ceil(Math.random()*6);
         switch (randomColor) {
-          case 1: this.matrix[i][j] = "red"; break;
-          case 2: this.matrix[i][j] = "yellow"; break;
-          case 3: this.matrix[i][j] = "green"; break;
-          case 4: this.matrix[i][j] = "cyan"; break;
-          case 5: this.matrix[i][j] = "blue"; break;
-          case 6: this.matrix[i][j] = "magenta"; break;
+          case 1: this.matrix[i][j] = 'red'; break;
+          case 2: this.matrix[i][j] = 'yellow'; break;
+          case 3: this.matrix[i][j] = 'green'; break;
+          case 4: this.matrix[i][j] = 'cyan'; break;
+          case 5: this.matrix[i][j] = 'blue'; break;
+          case 6: this.matrix[i][j] = 'magenta'; break;
         }
       }
     }

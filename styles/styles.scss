@@ -1,0 +1,83 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+  background: rgb(255, 255, 255);
+  font-family: 'Helvetica', 'Arial';
+}
+
+.container {
+  height: 90vh;
+  margin: 5vh auto;
+}
+
+.row {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.col-xs-6 {
+  border-radius: 50%;
+}
+
+.red {
+  background: rgb(255, 160, 160);
+  &:hover {
+    background: rgb(255, 192, 192);
+  }
+}
+
+.yellow {
+  background: rgb(255, 255, 160);
+  &:hover {
+    background: rgb(255, 255, 208);
+  }
+}
+
+.green {
+  background: rgb(160, 255, 160);
+  &:hover {
+    background: rgb(192, 255, 192);
+  }
+}
+
+.cyan {
+  background: rgb(160, 255, 255);
+  &:hover {
+    background: rgb(208, 255, 255);
+  }
+}
+
+.blue {
+  background: rgb(160, 160, 255);
+  &:hover {
+    background: rgb(192, 192, 255);
+  }
+}
+
+.magenta {
+  background: rgb(255, 160, 255);
+  &:hover {
+    background: rgb(255, 208, 255);
+  }
+}
+
+.white {
+  background: rgb(255, 255, 255);
+  &:hover {
+    background: rgb(240, 240, 240);
+  }
+}
+
+.black {
+  background: rgb(64, 64, 64);
+  &:hover {
+    background: rgb(80, 80, 80);
+  }
+}
+
+.silver {
+  background: rgb(208, 208, 224);
+}
