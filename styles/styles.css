@@ -24,60 +24,89 @@ html, body {
 
 .red {
   background: rgb(255, 160, 160);
-  &:hover {
-    background: rgb(255, 192, 192);
-  }
+}
+
+.red:hover {
+  background: rgb(255, 192, 192);
+  cursor: pointer;
 }
 
 .yellow {
   background: rgb(255, 255, 160);
-  &:hover {
-    background: rgb(255, 255, 208);
-  }
+}
+
+.yellow:hover {
+  background: rgb(255, 255, 208);
+  cursor: pointer;
 }
 
 .green {
   background: rgb(160, 255, 160);
-  &:hover {
-    background: rgb(192, 255, 192);
-  }
+}
+
+.green:hover {
+  background: rgb(192, 255, 192);
+  cursor: pointer;
 }
 
 .cyan {
   background: rgb(160, 255, 255);
-  &:hover {
-    background: rgb(208, 255, 255);
-  }
+}
+
+.cyan:hover {
+  background: rgb(208, 255, 255);
+  cursor: pointer;
 }
 
 .blue {
   background: rgb(160, 160, 255);
-  &:hover {
-    background: rgb(192, 192, 255);
-  }
+}
+
+.blue:hover {
+  background: rgb(192, 192, 255);
+  cursor: pointer;
 }
 
 .magenta {
   background: rgb(255, 160, 255);
-  &:hover {
-    background: rgb(255, 208, 255);
-  }
+}
+
+.magenta:hover {
+  background: rgb(255, 208, 255);
+  cursor: pointer;
 }
 
 .white {
   background: rgb(255, 255, 255);
-  &:hover {
-    background: rgb(240, 240, 240);
-  }
+}
+
+.white:hover {
+  background: rgb(240, 240, 240);
+  cursor: pointer;
 }
 
 .black {
   background: rgb(64, 64, 64);
-  &:hover {
-    background: rgb(80, 80, 80);
-  }
+}
+
+.black:hover {
+  background: rgb(80, 80, 80);
+  cursor: pointer;
 }
 
 .silver {
   background: rgb(208, 208, 224);
 }
+
+.selectedCell {
+  animation:blink 600ms infinite alternate;
+}
+
+@keyframes blink {
+  from {
+    opacity:1;
+  }
+  to {
+    opacity:0;
+  }
+};

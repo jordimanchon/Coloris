@@ -28,8 +28,8 @@ Board.prototype._generatePointsRow = function() {
 };
 
 Board.prototype._generateRandomColors = function() {
-  for (i = 0; i < this.matrix.length; i++) {
-    for (j = 0; j < this.matrix[i].length; j++) {
+  for (var i = 0; i < this.matrix.length; i++) {
+    for (var j = 0; j < this.matrix[i].length; j++) {
       if (this.matrix[i][j] === null) {
         var randomColor = Math.ceil(Math.random()*6);
         switch (randomColor) {

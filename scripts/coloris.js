@@ -37,6 +37,8 @@ $(document).ready(function(){
   if (game.canSelect()) {
     cell.on('click', function(c) {
       var selectedCell = $(this).data();
+      var selected = $(this)
+       .addClass('selectedCell');
       console.log(selectedCell); // !!!!!!!!!!!!!
       game.move(selectedCell);
       console.log(game.activeMove); // !!!!!!!!!!!!!
