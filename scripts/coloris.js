@@ -27,7 +27,7 @@ function renderBoard(board) {
 }
 
 $(document).ready(function(){
-  console.table(board.matrix); // !!!!!!!!!!!!!
+  console.table(board.matrix);
   renderBoard(board);
 
   //counters
@@ -39,9 +39,9 @@ $(document).ready(function(){
       var selectedCell = $(this).data();
       var selected = $(this)
        .addClass('selectedCell');
-      console.log(selectedCell); // !!!!!!!!!!!!!
+      console.log(selectedCell);
       game.move(selectedCell);
-      console.log(game.activeMove); // !!!!!!!!!!!!!
+      console.log(game.activeMove);
       if (game.activeMove.length === 2) {
         game.endMove();
       }

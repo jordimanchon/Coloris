@@ -50,7 +50,7 @@ Rules.prototype.endMove = function() {
     //errorSound
     this.cleanMove();
   }
-  console.log(this.activeMove); //!!!!!!!!!!!!!!!!!!!!!
+  console.log(this.activeMove);
 };
 Rules.prototype.canMatch = function() {
   if (this.activeMove[0] === 'red') {
@@ -138,29 +138,43 @@ Rules.prototype.matchColors = function() {
   board.matrix[this.deleteCells[1][0]].splice(this.deleteCells[1][1], 1, newColor);
 };
 
-// Rules.prototype._transposeMatrix = function() {
-//   for (var row = 0; row < board.matrix.length; row++) {
-//     for (var column = row+1; column < board.matrix.length; column++) {
-//       var temp = board.matrix[row][column];
-//       board.matrix[row][column] = board.matrix[column][row];
-//       board.matrix[column][row] = temp;
-//     }
-//   }
-// };
-
 Rules.prototype.refreshBoard = function() {
   this.matchColors();
-  // for (var i = 0; i < board.matrix.length; i++) {
-  //   while (board.matrix[i].length > 6) {
-  //     board.matrix[i].pop();
-  //  }
-  //}
-
+  var randomColor = Math.ceil(Math.random()*6);
+  switch (randomColor) {
+    case 1: randomColor = 'red'; break;
+    case 2: randomColor = 'yellow'; break;
+    case 3: randomColor = 'green'; break;
+    case 4: randomColor = 'cyan'; break;
+    case 5: randomColor = 'blue'; break;
+    case 6: randomColor = 'magenta'; break;
+  }
+  if (this.turn === 'player1') {
+    for (var i = this.deleteCells[0][0]; i < board.matrix.length; i++) { //desde la fila de la primera seleccionada hasta abajo
+      for (var j = 0; j < board.matrix[i].length; j++) { //por todas las celdas de la fila
+        if (board.matrix[i][j] === null) {
+          for (var y = this.deleteCells[0][0]; y > 0; y--) {
+              board.matrix[y][j] = board.matrix[y-1][j];
+          }
+        }
+      }
+    }
+    board.matrix[0].splice(this.deleteCells[0][1], 1, randomColor);
+  } else if (this.turn === 'player2') {
+    for (var u = this.deleteCells[0][0]; u > 0; u--) { //desde la fila de la primera seleccionada hasta arriba
+      for (var v = 0; v < board.matrix[u].length; v++) { //por todas las celdas de la fila
+        if (board.matrix[u][v] === null) {
+          for (var w = this.deleteCells[0][0]; w < board.matrix.length - 1; w++) {
+              board.matrix[w][v] = board.matrix[w+1][v];
+          }
+        }
+      }
+    }
+    board.matrix[12].splice(this.deleteCells[0][1], 1, randomColor);
+  }
   console.table(board.matrix);
-
-    //recorrer board.matrix y si hay null pa arriba o pa abajo
-  //?puntos
-  //board._generateRandomColors()
+  this.reRenderBoard();
+  this.nextMove();
 };
 
 Rules.prototype.endTurn = function() {
@@ -173,4 +187,28 @@ Rules.prototype.endTurn = function() {
       break;
   }
   this.restartMoves();
+};
+
+Rules.prototype.reRenderBoard = function () {
+  $(".container > *").remove();
+  renderBoard(board);
+};
+
+Rules.prototype.nextMove = function () {
+  var cell = $('.color').not($('.silver'));
+  var coin = $('.silver');
+  if (game.canSelect()) {
+    cell.on('click', function(c) {
+      var selectedCell = $(this).data();
+      var selected = $(this)
+       .addClass('selectedCell');
+      console.log(selectedCell);
+      game.move(selectedCell);
+      console.log(game.activeMove);
+      if (game.activeMove.length === 2) {
+        game.endMove();
+      }
+      console.log(game);
+    });
+  }
 };

@@ -1,11 +1,11 @@
 # Coloris
-Play Coloris soon…
+Play Coloris [here](https://jordimanchon.github.io/Coloris/).
 
 ## Author
 [Jorge Manchón](mailto:jordimanchon@me.com)
 
 ## Progress
 - [X] Create repo
-- [ ] Game logic
-- [ ] Add style
-- [ ] Join everything together
+- [X] Game logic
+- [X] Add style
+- [X] Join everything together
