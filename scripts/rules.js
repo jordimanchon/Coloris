@@ -16,9 +16,7 @@ Rules.prototype.canMove = function() {
 };
 
 Rules.prototype.canSelect = function() {
-  if (this.canMove()) {
-    return true;
-  }
+  if (this.canMove()) return true;
 };
 
 Rules.prototype.move = function(selectedCell) {

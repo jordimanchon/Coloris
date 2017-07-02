@@ -3,11 +3,23 @@ html, body {
   padding: 0px;
   background: rgb(255, 255, 255);
   font-family: 'Helvetica', 'Arial';
+  font-weight: lighter;
+  font-size: 14px;
+  overflow: hidden
 }
 
 .container {
   height: 90vh;
   margin: 5vh auto;
+}
+
+button:focus {
+  outline: 0 !important;
+}
+
+button span {
+  color: rgb(255, 255, 255);
+  transform: translate(5%, -60%);
 }
 
 .row {
