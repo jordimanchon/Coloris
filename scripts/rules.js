@@ -37,7 +37,7 @@ Rules.prototype.cleanMove = function() {
 
 Rules.prototype.endMove = function() {
   if (this.canMatch()) {
-    this.refreshBoard();
+    this.matchColors();
     this.cleanMove();
     this.remainingMoves --;
     if (!this.canMove()) {
@@ -134,10 +134,10 @@ Rules.prototype.matchColors = function() {
   }
   board.matrix[this.deleteCells[0][0]].splice(this.deleteCells[0][1], 1, null);
   board.matrix[this.deleteCells[1][0]].splice(this.deleteCells[1][1], 1, newColor);
+  this.refreshBoard();
 };
 
 Rules.prototype.refreshBoard = function() {
-  this.matchColors();
   var randomColor = Math.ceil(Math.random()*6);
   switch (randomColor) {
     case 1: randomColor = 'red'; break;
@@ -159,7 +159,7 @@ Rules.prototype.refreshBoard = function() {
     }
     board.matrix[0].splice(this.deleteCells[0][1], 1, randomColor);
   } else if (this.turn === 'player2') {
-    for (var u = this.deleteCells[0][0]; u > 0; u--) { //desde la fila de la primera seleccionada hasta arriba
+    for (var u = this.deleteCells[0][0]; u >= 0; u--) { //desde la fila de la primera seleccionada hasta arriba
       for (var v = 0; v < board.matrix[u].length; v++) { //por todas las celdas de la fila
         if (board.matrix[u][v] === null) {
           for (var w = this.deleteCells[0][0]; w < board.matrix.length - 1; w++) {
@@ -188,7 +188,7 @@ Rules.prototype.endTurn = function() {
 };
 
 Rules.prototype.reRenderBoard = function () {
-  $(".container > *").remove();
+  $(".container").empty();
   renderBoard(board);
 };
 
