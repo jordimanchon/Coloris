@@ -73,7 +73,7 @@ $(document).ready(function(){
 
   $('#btn-start').click(function(){
     $('.container').empty();
-    console.table(board.matrix);
+    console.table(board.matrix); //!!!!!!!!!!!!!!!!!!!!!!!!!
     renderBoard(board);
     var cell = $('.color').not($('.silver'));
     var coin = $('.silver');
@@ -82,13 +82,13 @@ $(document).ready(function(){
         var selectedCell = $(this).data();
         var selected = $(this)
          .addClass('selectedCell');
-        console.log(selectedCell);
+        console.log(selectedCell); //!!!!!!!!!!!!!!!!!!!!!!!!!
         game.move(selectedCell);
-        console.log(game.activeMove);
+        console.log(game.activeMove); //!!!!!!!!!!!!!!!!!!!!!!!!!
         if (game.activeMove.length === 2) {
           game.endMove();
         }
-        console.log(game);
+        console.log(game); //!!!!!!!!!!!!!!!!!!!!!!!!!
       });
     }
   });

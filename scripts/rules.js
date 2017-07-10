@@ -40,10 +40,10 @@ Rules.prototype.cleanMove = function() {
 };
 
 Rules.prototype.endMove = function() {
-  if (this.canMatch()) {
+  if (this.canMatch() && this.isAdjacent()) {
     this.matchColors();
     this.cleanMove();
-    this.remainingMoves --;
+    this.remainingMoves--;
     if (!this.canMove()) {
       this.endTurn();
     }
@@ -52,7 +52,7 @@ Rules.prototype.endMove = function() {
     //errorSound
     this.cleanMove();
   }
-  console.log(this.activeMove);
+  console.log(this.activeMove); //!!!!!!!!!!!!!!!!!!!!!!!!!
 };
 Rules.prototype.canMatch = function() {
   if (this.activeMove[0] === 'red') {
@@ -67,7 +67,20 @@ Rules.prototype.canMatch = function() {
     if (this.activeMove[1] === 'cyan' || this.activeMove[1] === 'yellow') return true;
   } else if (this.activeMove[0] === 'yellow') {
     if (this.activeMove[1] === 'cyan' || this.activeMove[1] === 'magenta') return true;
-  } else { return false;
+  } else {
+    return false;
+  }
+};
+
+Rules.prototype.isAdjacent = function() {
+  if (this.deleteCells[1][0] === this.deleteCells[0][0]) {
+    if (this.deleteCells[1][1] === this.deleteCells[0][1] + 1 || this.deleteCells[1][1] === this.deleteCells[0][1] - 1) {
+      return true;
+    }
+  } else if (this.deleteCells[1][1] === this.deleteCells[0][1]){
+    if (this.deleteCells[1][0] === this.deleteCells[0][0] + 1 || this.deleteCells[1][0] === this.deleteCells[0][0] - 1) {
+      return true;
+    }
   }
 };
 
@@ -142,21 +155,33 @@ Rules.prototype.matchColors = function() {
 };
 
 Rules.prototype.refreshBoard = function() {
-  var randomColor = Math.ceil(Math.random()*6);
+  var randomColor = Math.ceil(Math.random() * 6);
   switch (randomColor) {
-    case 1: randomColor = 'red'; break;
-    case 2: randomColor = 'yellow'; break;
-    case 3: randomColor = 'green'; break;
-    case 4: randomColor = 'cyan'; break;
-    case 5: randomColor = 'blue'; break;
-    case 6: randomColor = 'magenta'; break;
+    case 1:
+      randomColor = 'red';
+      break;
+    case 2:
+      randomColor = 'yellow';
+      break;
+    case 3:
+      randomColor = 'green';
+      break;
+    case 4:
+      randomColor = 'cyan';
+      break;
+    case 5:
+      randomColor = 'blue';
+      break;
+    case 6:
+      randomColor = 'magenta';
+      break;
   }
   if (this.turn === 'player1') {
     for (var i = this.deleteCells[0][0]; i < board.matrix.length; i++) { //desde la fila de la primera seleccionada hasta abajo
       for (var j = 0; j < board.matrix[i].length; j++) { //por todas las celdas de la fila
         if (board.matrix[i][j] === null) {
           for (var y = this.deleteCells[0][0]; y > 0; y--) {
-              board.matrix[y][j] = board.matrix[y-1][j];
+            board.matrix[y][j] = board.matrix[y - 1][j];
           }
         }
       }
@@ -167,15 +192,15 @@ Rules.prototype.refreshBoard = function() {
       for (var v = 0; v < board.matrix[u].length; v++) { //por todas las celdas de la fila
         if (board.matrix[u][v] === null) {
           for (var w = this.deleteCells[0][0]; w < board.matrix.length - 1; w++) {
-              board.matrix[w][v] = board.matrix[w+1][v];
+            board.matrix[w][v] = board.matrix[w + 1][v];
           }
         }
       }
     }
-    board.matrix[board.matrix.length-1].splice(this.deleteCells[0][1], 1, randomColor);
+    board.matrix[board.matrix.length - 1].splice(this.deleteCells[0][1], 1, randomColor);
   }
-  if (this.turn === 'player1' && board.matrix[board.matrix.length-1][game.deleteCells[0][1]] === 'silver') {
-    board.matrix[board.matrix.length-1].splice(this.deleteCells[0][1], 1, null);
+  if (this.turn === 'player1' && board.matrix[board.matrix.length - 1][game.deleteCells[0][1]] === 'silver') {
+    board.matrix[board.matrix.length - 1].splice(this.deleteCells[0][1], 1, null);
     this.refreshBoard();
     this.points.player1++;
   } else if (this.turn === 'player2' && board.matrix[0][game.deleteCells[0][1]] === 'silver') {
@@ -183,7 +208,7 @@ Rules.prototype.refreshBoard = function() {
     this.refreshBoard();
     this.points.player2++;
   }
-  console.table(board.matrix);
+  console.table(board.matrix); //!!!!!!!!!!!!!!!!!!!!!!!!!
   this.reRenderBoard();
   this.nextMove();
 };
@@ -200,26 +225,26 @@ Rules.prototype.endTurn = function() {
   this.restartMoves();
 };
 
-Rules.prototype.reRenderBoard = function () {
+Rules.prototype.reRenderBoard = function() {
   $(".container").empty();
   renderBoard(board);
 };
 
-Rules.prototype.nextMove = function () {
+Rules.prototype.nextMove = function() {
   var cell = $('.color').not($('.silver'));
   var coin = $('.silver');
   if (game.canSelect()) {
     cell.on('click', function(c) {
       var selectedCell = $(this).data();
       var selected = $(this)
-       .addClass('selectedCell');
-      console.log(selectedCell);
+        .addClass('selectedCell');
+      console.log(selectedCell); //!!!!!!!!!!!!!!!!!!!!!!!!!
       game.move(selectedCell);
-      console.log(game.activeMove);
+      console.log(game.activeMove); //!!!!!!!!!!!!!!!!!!!!!!!!!
       if (game.activeMove.length === 2) {
         game.endMove();
       }
-      console.log(game);
+      console.log(game); //!!!!!!!!!!!!!!!!!!!!!!!!!
     });
   }
 };
