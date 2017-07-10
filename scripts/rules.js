@@ -4,6 +4,10 @@ function Rules(moves) {
   this.activeMove = [];
   this.deleteCells = [null, null];
   this.turn = 'player1';
+  this.points = {
+    player1: 0,
+    player2: 0
+  };
   this.restartMoves();
 }
 
@@ -168,7 +172,16 @@ Rules.prototype.refreshBoard = function() {
         }
       }
     }
-    board.matrix[12].splice(this.deleteCells[0][1], 1, randomColor);
+    board.matrix[board.matrix.length-1].splice(this.deleteCells[0][1], 1, randomColor);
+  }
+  if (this.turn === 'player1' && board.matrix[board.matrix.length-1][game.deleteCells[0][1]] === 'silver') {
+    board.matrix[board.matrix.length-1].splice(this.deleteCells[0][1], 1, null);
+    this.refreshBoard();
+    this.points.player1++;
+  } else if (this.turn === 'player2' && board.matrix[0][game.deleteCells[0][1]] === 'silver') {
+    board.matrix[0].splice(this.deleteCells[0][1], 1, null);
+    this.refreshBoard();
+    this.points.player2++;
   }
   console.table(board.matrix);
   this.reRenderBoard();
