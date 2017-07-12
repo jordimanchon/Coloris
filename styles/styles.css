@@ -17,6 +17,11 @@ button:focus {
   outline: 0 !important;
 }
 
+button p {
+  top: 50%;
+  transform: translate(-10%, -50%);
+}
+
 button span {
   color: rgb(255, 255, 255);
   position: absolute;
