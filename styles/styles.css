@@ -114,18 +114,25 @@ button span {
 }
 
 .silver {
-  background: rgb(224, 224, 224);
+  animation: shine 600ms infinite alternate;
+}
+
+@keyframes shine {
+  from {
+    background: rgb(224, 224, 224);
+  } to {
+    background: rgb(240, 240, 240);
+  }
 }
 
 .selectedCell {
-  animation:blink 600ms infinite alternate;
+  animation: blink 600ms infinite alternate;
 }
 
 @keyframes blink {
   from {
     opacity:1;
-  }
-  to {
+  } to {
     opacity:0;
   }
 };
